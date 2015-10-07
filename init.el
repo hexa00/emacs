@@ -12,6 +12,7 @@
                     (or (buffer-file-name) load-file-name)))
 
 (add-to-list 'load-path dotfiles-dir)
+(add-to-list 'load-path "~/.emacs.d/lib")
 (add-to-list 'load-path "~/.emacs.d/lib/use-package")
 ;; color theme, somehow version 6.6.x has lost it's themes
 (add-to-list 'load-path "~/.emacs.d/lib/color-theme-6.5.5")
