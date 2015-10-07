@@ -12,6 +12,10 @@
 (prefer-coding-system 'utf-8)
 (ansi-color-for-comint-mode-on)
 
+;; Important to get a black background in emacsclient -t
+;; http://denilab.blogspot.ca/2012/10/emacs-live-tmux-yes-we-can.html
+(set-face-background 'default "color-16")
+
 ;; Transparently open compressed files
 (auto-compression-mode t)
 
