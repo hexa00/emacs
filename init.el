@@ -7,11 +7,6 @@
 (setq use-package-verbose t)
 
 ;; Load path etc.
-
-(setq dotfiles-dir (file-name-directory
-                    (or (buffer-file-name) load-file-name)))
-
-(add-to-list 'load-path dotfiles-dir)
 (add-to-list 'load-path "~/.emacs.d/lib")
 (add-to-list 'load-path "~/.emacs.d/lib/use-package")
 ;; color theme, somehow version 6.6.x has lost it's themes
@@ -79,10 +74,12 @@
   )
 
 (use-package color-theme
+  :ensure f
   :config
   (color-theme-clarity))
 
 (use-package compile-dir
+  :ensure f
   :bind ("<f7>" . gdb-compile)
   )
 
@@ -107,6 +104,7 @@
 
 
 (use-package helm-config
+  :ensure f
   :defer t)
 
 (use-package helm-gtags
@@ -188,6 +186,7 @@
 (use-package stgit
   :defer t)
 
-(use-package work)
+(use-package work
+  :ensure f)
 
 (require 'custom-defs)
