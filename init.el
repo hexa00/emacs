@@ -43,7 +43,7 @@
 
 ;; Better unique names rather then file<1> file<2>
 ;;; FIXME not working ?
-(use-package uniquify)
+;;(use-package uniquify)
 
 ;; Support shell color codes
 (use-package ansi-color
