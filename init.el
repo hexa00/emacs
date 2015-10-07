@@ -53,10 +53,11 @@
 
 (use-package cc-mode
   :defer t
-  :init
   :bind  ("C-c o" . ff-find-other-file)
   :config
-)
+  (add-hook 'c-mode-common-hook 'helm-gtags-mode)
+  )
+
 
 (use-package semantic
   :defer t
@@ -124,11 +125,6 @@
   (bind-key "M-," 'helm-gtags-pop-stack helm-gtags-mode-map)
   (bind-key "C-c <" 'helm-gtags-previous-history helm-gtags-mode-map)
   (bind-key "C-c >" 'helm-gtags-next-history helm-gtags-mode-map)
-  (add-hook 'dired-mode-hook 'helm-gtags-mode)
-  (add-hook 'eshell-mode-hook 'helm-gtags-mode)
-  (add-hook 'c-mode-hook 'helm-gtags-mode)
-  (add-hook 'c++-mode-hook 'helm-gtags-mode)
-  (add-hook 'asm-mode-hook 'helm-gtags-mode)
 )
 
 (use-package helm-ack
