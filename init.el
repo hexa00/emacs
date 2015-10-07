@@ -185,4 +185,4 @@
 (use-package work
   :ensure f)
 
-(require 'custom-defs)
+(use-package custom-defs)
