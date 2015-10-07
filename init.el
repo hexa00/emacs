@@ -9,8 +9,6 @@
 ;; Load path etc.
 (add-to-list 'load-path "~/.emacs.d/lib")
 (add-to-list 'load-path "~/.emacs.d/lib/use-package")
-;; color theme, somehow version 6.6.x has lost it's themes
-(add-to-list 'load-path "~/.emacs.d/lib/color-theme-6.5.5")
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -75,8 +73,8 @@
   )
 
 (use-package color-theme
-  :ensure f
   :config
+  (color-theme-initialize)
   (color-theme-clarity))
 
 (use-package compile-dir
@@ -185,4 +183,5 @@
 (use-package work
   :ensure f)
 
-(use-package custom-defs)
+(use-package custom-defs
+  :ensure f)
