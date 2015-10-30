@@ -54,6 +54,8 @@
   :bind  ("C-c o" . ff-find-other-file)
   :config
   (add-hook 'c-mode-common-hook 'helm-gtags-mode)
+  ;; For gdb style based on gnu ident case in switch statements
+  (c-set-offset 'case-label '+)
   )
 
 
@@ -71,11 +73,6 @@
   (semantic-mode 1)
   (setq stack-trace-on-error t)
   )
-
-(use-package color-theme
-  :config
-  (color-theme-initialize)
-  (color-theme-clarity))
 
 (use-package compile-dir
   :ensure f
@@ -180,8 +177,16 @@
 (use-package stgit
   :defer t)
 
+;; Git
+(use-package magit
+  :defer t)
+
 (use-package work
   :ensure f)
 
 (use-package custom-defs
   :ensure f)
+
+
+(load-theme 'manoj-dark t)
+

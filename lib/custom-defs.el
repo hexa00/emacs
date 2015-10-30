@@ -57,6 +57,7 @@
  '(ecb-tip-of-the-day nil)
  '(ecb-compile-window-height 6)
  )
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -85,7 +86,7 @@
 
 ;; Wrap at 80 col
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-(setq-default fill-column 80)
+(setq-default fill-column 74)
 
 ;; Mini buffer easy file navigation etc
 (setq ido-enable-flex-matching t)
