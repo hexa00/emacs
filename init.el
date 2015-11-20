@@ -194,4 +194,3 @@
   :defer t)
 
 (load-theme 'manoj-dark-mod t)
-

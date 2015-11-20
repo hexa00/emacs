@@ -1,8 +1,8 @@
-(deftheme manoj-dark
+(deftheme manoj-dark-mod
   "Created 2015-11-20.")
 
 (custom-theme-set-faces
- 'manoj-dark
+ 'manoj-dark-mod
  '(font-lock-builtin-face ((t (:foreground "LightSteelBlue"))))
  '(font-lock-constant-face ((t (:foreground "LightSlateBlue" :bold t))))
  '(font-lock-preprocessor-face ((t (:foreground "CornFlowerBlue" :italic t))))
@@ -302,7 +302,7 @@
  '(completions-first-difference ((t (:bold t :weight bold))))
  '(css-selector ((t (:foreground "LightSteelBlue"))))
  '(css-property ((t (:foreground "light sea green"))))
- '(cursor ((t (:background "orchid"))))
+ '(cursor ((t (:background "yellow"))))
  '(custom-button-face ((t (:background "lightgrey" :foreground "black" :box (quote (:line-width 2 :style released-button))))))
  '(custom-button-pressed-face ((t (:background "lightgrey" :foreground "black" :box (quote (:line-width 2 :style pressed-button))))))
  '(custom-changed-face ((t (:foreground "wheat" :background "blue"))))
@@ -533,4 +533,4 @@
  '(woman-unknown-face ((t (:foreground "LightSalmon"))))
  '(default ((t (:background "black" :foreground "WhiteSmoke")))))
 
-(provide-theme 'manoj-dark)
+(provide-theme 'manoj-dark-mod)
