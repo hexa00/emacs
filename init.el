@@ -190,7 +190,7 @@
 (use-package custom-defs
   :ensure f)
 
-(use-package 'doremi-cmd
+(use-package doremi-cmd
   :defer t)
 
 (load-theme 'manoj-dark-mod t)
