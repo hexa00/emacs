@@ -46,7 +46,9 @@
              :mode "COMMIT_EDITMSG$"
              :config
              (set-face-foreground 'diff-added "green4")
+             (set-face-background 'diff-added "black")
              (set-face-foreground 'diff-removed "red3")
+             (set-face-background 'diff-removed "black")
              )
 
 (use-package cc-mode
@@ -55,7 +57,8 @@
   :config
   (add-hook 'c-mode-common-hook 'helm-gtags-mode)
   ;; For gdb style based on gnu ident case in switch statements
-  (c-set-offset 'case-label '+)
+  ;; may not be really needed
+  ;;(c-set-offset 'case-label '+)
   )
 
 
@@ -187,5 +190,8 @@
 (use-package custom-defs
   :ensure f)
 
+(use-package 'doremi-cmd
+  :defer t)
 
-(load-theme 'manoj-dark t)
+(load-theme 'manoj-dark-mod t)
+
