@@ -177,8 +177,7 @@
 )
 
 ;; Stacked git
-(use-package stgit
-  :defer t)
+(use-package stgit)
 
 ;; Git
 (use-package magit
