@@ -61,7 +61,6 @@
   ;;(c-set-offset 'case-label '+)
   )
 
-
 (use-package semantic
   :defer t
   :config
@@ -174,6 +173,18 @@
   (setq-default whitespace-style '(face trailing lines empty))
   (setq-default whitespace-line-column 80)
   (global-whitespace-mode 1)
+  (defun switch-whitespace-max-line (max)
+    (progn
+      (whitespace-mode)
+      (setq-default whitespace-line-column max)
+      (whitespace-mode)))
+  (defun switch-whitespace-max-line-i (max)
+    (interactive "nMax column for lines: ")
+    (switch-whitespace-max-line max)
+    )
+  :bind (("C-c w" . whitespace-mode)
+	 ("C-c t" . whitespace-toggle-options)
+	 ("C-c l" . switch-whitespace-max-line-i))
 )
 
 ;; Stacked git
