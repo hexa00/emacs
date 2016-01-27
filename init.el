@@ -203,4 +203,24 @@
 (use-package doremi-cmd
   :defer t)
 
+(use-package org-mode
+  :ensure f
+  :init
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+  (define-key global-map "\C-cc" 'org-capture)
+
+  ;;https://lists.gnu.org/archive/html/emacs-orgmode/2008-05/msg00039.html
+  (defun my-link-to-line-number-in-c-mode ()
+    "When in c-mode, use line number as search item."
+    (when (eq major-mode 'c-mode)
+      (number-to-string (org-current-line))))
+
+  (add-hook 'org-create-file-search-functions
+	  'my-link-to-line-number-in-c-mode)
+
+  (setq org-capture-templates
+      '(("c" "Code" entry (file+headline "~/notes/org/capture.org" "Code")
+             "** Snippet\n %i\n%a")))
+)
+
 (load-theme 'manoj-dark-mod t)
