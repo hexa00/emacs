@@ -206,6 +206,7 @@
 (use-package org-mode
   :ensure f
   :init
+  (setq org-directory "~/notes/org")
   (setq org-default-notes-file (concat org-directory "/notes/notes.org"))
   (setq org-refile-targets '(("notes.org" :maxlevel . 6)))
   (setq org-completion-use-ido t)
