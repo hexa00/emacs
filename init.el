@@ -207,7 +207,8 @@
   :ensure f
   :init
   (setq org-default-notes-file (concat org-directory "/notes/notes.org"))
-
+  (setq org-refile-targets '(("notes.org" :maxlevel . 6)))
+  (setq org-completion-use-ido t)
   ;;https://lists.gnu.org/archive/html/emacs-orgmode/2008-05/msg00039.html
   (defun my-link-to-line-number-in-c-mode ()
     "When in c-mode, use line number as search item."
