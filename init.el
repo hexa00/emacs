@@ -206,8 +206,7 @@
 (use-package org-mode
   :ensure f
   :init
-  (setq org-default-notes-file (concat org-directory "/notes.org"))
-  (define-key global-map "\C-cc" 'org-capture)
+  (setq org-default-notes-file (concat org-directory "/notes/notes.org"))
 
   ;;https://lists.gnu.org/archive/html/emacs-orgmode/2008-05/msg00039.html
   (defun my-link-to-line-number-in-c-mode ()
@@ -219,8 +218,9 @@
 	  'my-link-to-line-number-in-c-mode)
 
   (setq org-capture-templates
-      '(("c" "Code" entry (file+headline "~/notes/org/capture.org" "Code")
+      '(("c" "Code" entry (file+headline "~/notes/notes.org" "Scratch")
              "** Snippet\n %i\n%a")))
+  :bind ("C-c c" . org-capture)
 )
 
 (load-theme 'manoj-dark-mod t)
