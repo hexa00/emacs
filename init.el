@@ -136,10 +136,13 @@
   :config
   (when (executable-find "ack-grep")
     (setq helm-grep-default-command "ack-grep -Hn --no-group --no-color %e %p %f"
-	  helm-grep-default-recurse-command "ack-grep -H --no-group --no-color %e %p %f")
+	  helm-grep-default-recurse-command "ack-grep -H --no-group --no-color %e %p %f")))
 
-)
-)
+(use-package helm-descbinds
+  :defer t
+  :ensure t
+  :bind (("C-h b" . helm-descbinds)
+         ("C-h w" . helm-descbinds)))
 
 ;; Set colors for company below
 (use-package color)
@@ -194,12 +197,6 @@
 (use-package magit
   :defer t)
 
-(use-package work
-  :ensure f)
-
-(use-package custom-defs
-  :ensure f)
-
 (use-package doremi-cmd
   :defer t)
 
@@ -224,5 +221,23 @@
              "** Snippet\n %i\n%a")))
   :bind ("C-c c" . org-capture)
 )
+
+(use-package smart-mode-line
+  :ensure t
+  :defer t)
+
+(use-package guide-key
+  :defer t
+  :diminish guide-key-mode
+  :config
+  (setq guide-key/idle-delay 0.5)
+  (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
+  (guide-key-mode 1))  ; Enable guide-key-mode
+
+(use-package work
+  :ensure f)
+
+(use-package custom-defs
+  :ensure f)
 
 (load-theme 'manoj-dark-mod t)
