@@ -9,6 +9,7 @@
 ;; Load path etc.
 (add-to-list 'load-path "~/.emacs.d/lib")
 (add-to-list 'load-path "~/.emacs.d/lib/use-package")
+(add-to-list 'load-path "/usr/local/mu-git/share/emacs/site-lisp/mu4e")
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
@@ -233,6 +234,13 @@
   (setq guide-key/idle-delay 0.5)
   (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
   (guide-key-mode 1))  ; Enable guide-key-mode
+
+(use-package w3m
+  :ensure t
+  :defer t)
+
+(require 'mu4e)
+(require 'mu4e-my-actions)
 
 (use-package work
   :ensure f)
