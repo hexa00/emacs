@@ -101,8 +101,8 @@
 (setq add-log-mailing-address "antoine.tremblay@ericsson.com")
 
 (setq mu4e-mu-binary "/usr/local/mu-git/bin/mu")
-(setq mu4e-get-mail-command "offlineimap"
-      mu4e-update-interval 300)
+(setq mu4e-get-mail-command "~/scripts/update-mail"
+      mu4e-update-interval 60)
 (setq
  user-mail-address "antoine.tremblay@ericsson.com"
  user-full-name  "Antoine Tremblay")
@@ -111,6 +111,9 @@
 (setq mu4e-headers-skip-duplicates t)
 ;; don't keep message buffers around
 (setq message-kill-buffer-on-exit t)
+
+;; use fancy chars
+(setq mu4e-use-fancy-chars t)
 
 ;; default folders
 (setq
@@ -123,9 +126,20 @@
 (add-to-list 'mu4e-bookmarks '("maildir:/INBOX NOT flag:trashed NOT to:elx-users@mailman.lmera.ericsson.se NOT cc:elx-users@mailman.lmera.ericsson.se NOT to:gdb-patches@sourceware.org NOT cc:gdb-patches@sourceware.org NOT to:gdb@sourceware.org NOT cc:gdb@sourceware.org" "Inbox" ?i))
 (add-to-list 'mu4e-bookmarks '("maildir:/gdb-patches" "gdb patches" ?p))
 (add-to-list 'mu4e-bookmarks '("maildir:/gdb-patches to:antoine.tremblay@ericsson.com OR cc:antoine.tremblay" "my threads" ?t))
+(add-to-list 'mu4e-view-actions
+	     '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
 (add-to-list 'mu4e-view-actions
 	     '("istg import" . mu4e-action-stg-import) t)
+
+;; thread folding branch from zakkak
+(define-key 'mu4e-headers-mode-map (kbd "TAB") 'mu4e-headers-toggle-thread-folding)
+
+;; shr2text work well but is very slow
+;(setq mu4e-html2text-command 'mu4e-shr2text)
+;;(setq shr-color-visible-luminance-min 80)
+;; Doesn't preserve link etc but is fast , use a V to see in browser
+(setq mu4e-html2text-command "w3m -T text/html")
 
 
 (provide 'custom-defs)

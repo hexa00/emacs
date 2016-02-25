@@ -241,6 +241,7 @@
 
 (require 'mu4e)
 (require 'mu4e-my-actions)
+(require 'mu4e-contrib)
 
 (use-package work
   :ensure f)
