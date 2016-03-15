@@ -256,6 +256,66 @@
 (require 'mu4e-my-actions)
 (require 'mu4e-contrib)
 
+(use-package clojure-mode
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
+  (setq nrepl-popup-stacktraces nil)
+  (add-to-list 'same-window-buffer-names "<em>nrepl</em>")
+  (add-hook 'clojure-mode-hook 'paredit-mode)
+  (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
+  )
+
+
+(use-package ac-cider
+  :ensure t
+  :defer t
+  )
+
+(use-package auto-complete
+  :ensure t
+  :defer t
+  :config
+  (require 'auto-complete-config)
+  (setq ac-delay 0.0)
+  (setq ac-quick-help-delay 0.5)
+  (ac-config-default)
+  (add-to-list 'ac-modes 'cider-mode)
+  (add-to-list 'ac-modes 'cider-repl-mode)
+  (defun set-auto-complete-as-completion-at-point-function ()
+    (setq completion-at-point-functions '(auto-complete)))
+
+  (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
+  )
+
+(use-package paredit
+  :ensure t
+  :defer t)
+
+(use-package rainbow-delimiters
+  :ensure t
+  :defer t
+  )
+
+(use-package rainbow-mode
+  :ensure t
+  :defer t)
+
+(use-package cider
+  :ensure t
+  :defer t
+  :config
+  (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+  (add-hook 'cider-mode-hook 'ac-cider-setup)
+  (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
+  (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
+  )
+
+(use-package popup
+  :ensure t
+  :defer t)
+
 (use-package work
   :ensure f)
 
