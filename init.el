@@ -54,7 +54,13 @@
 
 (use-package cc-mode
   :defer t
-  :bind  ("C-c o" . ff-find-other-file)
+  :bind ("C-c o" . ff-find-other-file)
+  :bind (
+	 (:map c-mode-map
+	       ("M-RET" . srefactor-refactor-at-point))
+	 (:map c++-mode-map
+	       ("M-RET" . srefactor-refactor-at-point)))
+
   :config
   (add-hook 'c-mode-common-hook 'helm-gtags-mode)
   ;; For gdb style based on gnu ident case in switch statements
@@ -68,6 +74,13 @@
   (global-semanticdb-minor-mode 1)
   (global-semantic-idle-scheduler-mode 1)
   (global-semantic-stickyfunc-mode 1)
+  )
+
+(use-package srefactor
+  :ensure t
+  :defer t
+  :config
+  (semantic-mode 1)
   )
 
 (use-package ecb
