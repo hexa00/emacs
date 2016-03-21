@@ -13,7 +13,6 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/") t)
 
 ;; Init the package load path etc
 (package-initialize)
@@ -315,6 +314,20 @@
 (use-package popup
   :ensure t
   :defer t)
+
+(use-package org2blog
+  :ensure t
+  :defer t
+  :config
+  (setq org2blog/wp-blog-alist
+	'(("hexa-blog"
+	   :url "https://www.kayaksoft.com/blog/xmlrpc.php"
+	   :username "hexa"
+	   :default-title "Hello World"
+	   :default-categories ("org2blog" "emacs")
+	   :tags-as-categories nil
+	   )))
+  )
 
 (use-package work
   :ensure f)
