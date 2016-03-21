@@ -123,7 +123,6 @@
   mu4e-trash-folder  "/Trash"      ;; trashed messages
   mu4e-refile-folder "/Archive")   ;; saved messages
 
-(add-to-list 'mu4e-bookmarks '("maildir:/INBOX NOT flag:trashed NOT to:elx-users@mailman.lmera.ericsson.se NOT cc:elx-users@mailman.lmera.ericsson.se NOT to:gdb-patches@sourceware.org NOT cc:gdb-patches@sourceware.org NOT to:gdb@sourceware.org NOT cc:gdb@sourceware.org" "Inbox" ?i))
 (add-to-list 'mu4e-bookmarks '("maildir:/gdb-patches" "gdb patches" ?p))
 (add-to-list 'mu4e-bookmarks '("maildir:/gdb-patches to:antoine.tremblay@ericsson.com OR cc:antoine.tremblay" "my threads" ?t))
 (add-to-list 'mu4e-view-actions
