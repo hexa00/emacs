@@ -69,7 +69,9 @@
   '(ecb-default-highlight-face ((((class color) (background dark)) (:background "darkgreen"))))
  '(ecb-tag-header-face ((((class color) (background dark)) (:background "RoyalBlue"))))
  '(header-line ((t (:background "black" :foreground "white" :box nil))))
- '(which-func ((((class color) (min-colors 88) (background dark)) (:foreground "white")))))
+ '(which-func ((((class color) (min-colors 88) (background dark)) (:foreground "white"))))
+ '(mu4e-unread-face ((t (:inherit font-lock-type-face :weight normal))))
+ )
 
 
 (global-set-key (kbd "C-c <left>")  'windmove-left)
