@@ -13,6 +13,8 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives
+	     '("elpy" . "https://jorgenschaefer.github.io/packages/"))
 
 ;; Init the package load path etc
 (package-initialize)
@@ -62,6 +64,7 @@
 
   :config
   (add-hook 'c-mode-common-hook 'helm-gtags-mode)
+  (add-hook 'c-mode-common-hook 'company-mode)
   ;; For gdb style based on gnu ident case in switch statements
   ;; may not be really needed
   ;;(c-set-offset 'case-label '+)
@@ -162,26 +165,20 @@
 
 ;; Auto Completion
 ;; Fixme TAB not working properly
+;; FIXME colors not working ?
 (use-package company
-  :defer t
+  :defer f
+  :ensure t
   :init
-  (add-hook 'after-init-hook 'global-company-mode)
   (defvar company-key-map (make-sparse-keymap))
   :config
-  (let ((bg (face-attribute 'default :background)))
-    (custom-set-faces
-     `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
-     `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
-     `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
-     `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
-     `(company-tooltip-common ((t (:inherit font-lock-constant-face))))))
   (defun complete-or-indent ()
     (interactive)
     (if (company-manual-begin)
-        (company-complete-common)
+	(company-complete-common)
       (indent-according-to-mode)))
-;;  (bind-key "<tab>" 'complete-or-indent company-key-map)
-)
+;  (bind-key "\t" 'complete-or-indent company-key-map)
+  )
 
 (use-package whitespace
   :defer t
@@ -279,12 +276,12 @@
   (require 'auto-complete-config)
   (setq ac-delay 0.0)
   (setq ac-quick-help-delay 0.5)
-  (ac-config-default)
+  (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
   (add-to-list 'ac-modes 'cider-mode)
   (add-to-list 'ac-modes 'cider-repl-mode)
+  (setq global-auto-complete-mode nil)
   (defun set-auto-complete-as-completion-at-point-function ()
     (setq completion-at-point-functions '(auto-complete)))
-
   (add-hook 'auto-complete-mode-hook 'set-auto-complete-as-completion-at-point-function)
   )
 
@@ -323,11 +320,33 @@
 	'(("hexa-blog"
 	   :url "https://www.kayaksoft.com/blog/xmlrpc.php"
 	   :username "hexa"
-	   :default-title "Hello World"
-	   :default-categories ("org2blog" "emacs")
+	   :default-title "Title"
 	   :tags-as-categories nil
 	   )))
   )
+
+;;; Python dev
+(use-package python-mode
+  :defer t
+  :config
+  (add-hook 'c-mode-common-hook 'helm-gtags-mode)
+  (setq jedi:complete-on-dot t)                 ; optional
+  ;; For gdb style based on gnu ident case in switch statements
+  ;; may not be really needed
+  ;;(c-set-offset 'case-label '+)
+  )
+
+(use-package jedi
+  :ensure t)
+
+(use-package elpy
+  :ensure t
+  :config
+  (setq python-shell-interpreter "python3")
+  (setq elpy-rpc-python-command "python3")
+  (setq elpy-interactive-python-command "ipython3")
+  (elpy-use-ipython "ipython3")
+  (elpy-enable))
 
 (use-package work
   :ensure f)
@@ -336,3 +355,15 @@
   :ensure f)
 
 (load-theme 'manoj-dark-mod t)
+
+;; Company mode custom faces
+;; FIXME
+;; Somehow this can't go in :config
+;; Warning : Error (use-package): company :config: Wrong number of arguments: (3 . 3), 0
+(let ((bg (face-attribute 'default :background)))
+  (custom-set-faces
+   `(company-tooltip ((t (:inherit default :background ,(color-lighten-name bg 2)))))
+   `(company-scrollbar-bg ((t (:background ,(color-lighten-name bg 10)))))
+   `(company-scrollbar-fg ((t (:background ,(color-lighten-name bg 5)))))
+   `(company-tooltip-selection ((t (:inherit font-lock-function-name-face))))
+   `(company-tooltip-common ((t (:inherit font-lock-constant-face))))))
