@@ -167,7 +167,6 @@
 ;; Fixme TAB not working properly
 ;; FIXME colors not working ?
 (use-package company
-  :defer f
   :ensure t
   :init
   (defvar company-key-map (make-sparse-keymap))
@@ -236,14 +235,6 @@
   :ensure t
   :defer t)
 
-(use-package guide-key
-  :defer t
-  :diminish guide-key-mode
-  :config
-  (setq guide-key/idle-delay 0.5)
-  (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
-  (guide-key-mode 1))  ; Enable guide-key-mode
-
 (use-package w3m
   :ensure t
   :defer t)
@@ -256,9 +247,9 @@
   :ensure t
   :defer t
   :config
-  (add-hook 'clojure-mode-hook 'turn-on-eldoc-mode)
   (setq nrepl-popup-stacktraces nil)
   (add-to-list 'same-window-buffer-names "<em>nrepl</em>")
+  (add-hook 'clojure-mode-hook 'auto-complete-mode)
   (add-hook 'clojure-mode-hook 'paredit-mode)
   (add-hook 'clojure-mode-hook 'rainbow-delimiters-mode)
   )
@@ -266,17 +257,19 @@
 
 (use-package ac-cider
   :ensure t
-  :defer t
+  :config
+  (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
+  (add-hook 'cider-mode-hook 'ac-cider-setup)
+  (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
   )
 
 (use-package auto-complete
   :ensure t
-  :defer t
   :config
   (require 'auto-complete-config)
-  (setq ac-delay 0.0)
-  (setq ac-quick-help-delay 0.5)
-  (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+  (ac-config-default)
+  (setq ac-delay 0.2)
+  (setq ac-quick-help-delay 1)
   (add-to-list 'ac-modes 'cider-mode)
   (add-to-list 'ac-modes 'cider-repl-mode)
   (setq global-auto-complete-mode nil)
@@ -291,21 +284,21 @@
 
 (use-package rainbow-delimiters
   :ensure t
-  :defer t
+  :defer f
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
   )
 
 (use-package rainbow-mode
   :ensure t
-  :defer t)
+  )
 
 (use-package cider
   :ensure t
-  :defer t
   :config
-  (add-hook 'cider-mode-hook 'ac-flyspell-workaround)
-  (add-hook 'cider-mode-hook 'ac-cider-setup)
-  (add-hook 'cider-repl-mode-hook 'ac-cider-setup)
   (add-hook 'cider-mode-hook 'set-auto-complete-as-completion-at-point-function)
+  (add-hook 'cider-mode-hook 'eldoc-mode)
+  (add-hook 'cider-repl-mode-hook 'eldoc-mode)
   )
 
 (use-package popup
@@ -347,6 +340,13 @@
   (setq elpy-interactive-python-command "ipython3")
   (elpy-use-ipython "ipython3")
   (elpy-enable))
+
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-setup-side-window-right-bottom)
+  (which-key-mode)
+  )
 
 (use-package work
   :ensure f)
