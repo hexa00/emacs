@@ -266,8 +266,8 @@
 (use-package auto-complete
   :ensure t
   :config
-  (require 'auto-complete-config)
-  (ac-config-default)
+  (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
   (setq ac-delay 0.2)
   (setq ac-quick-help-delay 1)
   (add-to-list 'ac-modes 'cider-mode)
