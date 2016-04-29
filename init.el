@@ -227,7 +227,8 @@
 
   (setq org-capture-templates
       '(("c" "Code" entry (file+headline "~/notes/notes.org" "Scratch")
-             "** Snippet\n %i\n%a")))
+	 "** Snippet\n %i\n%a")))
+  (add-hook 'org-mode-hook 'flyspell-mode)
   :bind ("C-c c" . org-capture)
 )
 
@@ -347,6 +348,9 @@
   (which-key-setup-side-window-right-bottom)
   (which-key-mode)
   )
+
+(use-package flyspell
+  :ensure t)
 
 (use-package work
   :ensure f)
