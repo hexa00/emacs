@@ -196,7 +196,7 @@
     )
   :bind (("C-c w" . whitespace-mode)
 	 ("C-c t" . whitespace-toggle-options)
-	 ("C-c l" . switch-whitespace-max-line-i))
+	 ("C-c m" . switch-whitespace-max-line-i))
 )
 
 ;; Stacked git
@@ -241,6 +241,7 @@
   :defer t)
 
 (require 'mu4e)
+(require 'org-mu4e)
 (require 'mu4e-my-actions)
 (require 'mu4e-contrib)
 
