@@ -353,6 +353,11 @@
 (use-package flyspell
   :ensure t)
 
+;; apt-get install recordmydesktop  mplayer imagemagick
+;; Record an emacs screencast
+(use-package camcorder
+  :ensure t)
+
 (use-package work
   :ensure f)
 
