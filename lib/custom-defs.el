@@ -105,6 +105,11 @@
 (setq mu4e-mu-binary "/usr/local/mu-git/bin/mu")
 (setq mu4e-get-mail-command "~/scripts/update-mail"
       mu4e-update-interval 60)
+
+;;rename files when moving
+;;NEEDED FOR MBSYNC
+(setq mu4e-change-filenames-when-moving t)
+
 (setq
  user-mail-address "antoine.tremblay@ericsson.com"
  user-full-name  "Antoine Tremblay")

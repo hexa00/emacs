@@ -358,6 +358,19 @@
 (use-package camcorder
   :ensure t)
 
+(require 'cool-mode)
+
+;;https://github.com/politza/pdf-tools
+;;apt-get install libpng-dev libz-dev libpoppler-glib-dev libpoppler-private-dev imagemagick
+(use-package pdf-tools
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+  (pdf-tools-install)
+  )
+
+(use-package interleave)
+
 (use-package work
   :ensure f)
 
