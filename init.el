@@ -358,7 +358,7 @@
 (use-package camcorder
   :ensure t)
 
-(require 'cool-mode)
+;(require 'cool-mode)
 
 ;;https://github.com/politza/pdf-tools
 ;;apt-get install libpng-dev libz-dev libpoppler-glib-dev libpoppler-private-dev imagemagick
