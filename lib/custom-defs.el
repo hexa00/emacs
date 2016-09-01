@@ -147,5 +147,6 @@
 ;; Doesn't preserve link etc but is fast , use a V to see in browser
 (setq mu4e-html2text-command "w3m -T text/html")
 
+(setq gud-gdb-command-name "~/src/binutils-gdb/build-x86/gdb/gdb -D ~/src/binutils-gdb/build-x86/gdb/data-directory -i=mi")
 
 (provide 'custom-defs)

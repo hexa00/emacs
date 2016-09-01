@@ -65,6 +65,9 @@
   :config
   (add-hook 'c-mode-common-hook 'helm-gtags-mode)
   (add-hook 'c-mode-common-hook 'company-mode)
+  (add-hook 'c-mode-common-hook
+	    (function (lambda ()
+			(whitespace-mode t))))
   ;; For gdb style based on gnu ident case in switch statements
   ;; may not be really needed
   ;;(c-set-offset 'case-label '+)
@@ -184,7 +187,6 @@
   :init
   (setq-default whitespace-style '(face trailing lines empty))
   (setq-default whitespace-line-column 80)
-  (global-whitespace-mode 1)
   (defun switch-whitespace-max-line (max)
     (progn
       (whitespace-mode)
@@ -375,6 +377,9 @@
   :ensure f)
 
 (use-package custom-defs
+  :ensure f)
+
+(use-package custom-lib
   :ensure f)
 
 (load-theme 'manoj-dark-mod t)
