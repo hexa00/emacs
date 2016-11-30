@@ -146,7 +146,34 @@
 ;;(setq shr-color-visible-luminance-min 80)
 ;; Doesn't preserve link etc but is fast , use a V to see in browser
 (setq mu4e-html2text-command "w3m -T text/html")
+(setq mu4e-headers-results-limit 1500)
 
 (setq gud-gdb-command-name "~/src/binutils-gdb/build-x86/gdb/gdb -D ~/src/binutils-gdb/build-x86/gdb/data-directory -i=mi")
+
+
+;; Pretty print code blocks
+(defun org-html-src-block (src-block contents info)
+  "Transcode a SRC-BLOCK element from Org to HTML.
+CONTENTS holds the contents of the item.  INFO is a plist holding
+contextual information."
+  (if (org-export-read-attribute :attr_html src-block :textarea)
+      (org-html--textarea-block src-block)
+    (let ((lang (org-element-property :language src-block))
+	  (caption (org-export-get-caption src-block))
+	  (code (org-html-format-code src-block info))
+	  (label (let ((lbl (org-element-property :name src-block)))
+		   (if (not lbl) ""
+		     (format " id=\"%s\""
+			     (org-export-solidify-link-text lbl))))))
+      (if (not lang) (format "<pre class=\"prettyprint\"%s>\n%s</pre>" label code)
+	(format
+	 "<div class=\"org-src-container\">\n%s%s\n</div>"
+	 (if (not caption) ""
+	   (format "<label class=\"org-src-name\">%s</label>"
+		   (org-export-data caption info)))
+	 (format "\n<pre class=\"prettyprint lang-%s\"%s>%s</pre>" lang label code))))))
+
+;; Add gdb's code style warnings
+(load-file "~/src/binutils-gdb/gdb/gdb-code-style.el")
 
 (provide 'custom-defs)
