@@ -11,6 +11,7 @@
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 (ansi-color-for-comint-mode-on)
+(setq visible-bell t)
 
 ;; Set directory for ~ backup files
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
@@ -45,8 +46,10 @@
 ;;; y-n to yes /no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-; set default font
-(set-default-font "DejaVu Sans Mono-10")
+;; set default font
+;; this doesn't work in emacs 25 use custom-set-faces default..
+;; set it with menu-bar-open -> set default font
+;;(set-default-font "DejaVu Sans Mono-10")
 
 ;;; Replace this with the proper var ?
 (custom-set-variables
@@ -66,6 +69,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:family "DejaVu Sans Mono" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal))))
   '(ecb-default-highlight-face ((((class color) (background dark)) (:background "darkgreen"))))
  '(ecb-tag-header-face ((((class color) (background dark)) (:background "RoyalBlue"))))
  '(header-line ((t (:background "black" :foreground "white" :box nil))))
