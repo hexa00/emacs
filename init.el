@@ -364,14 +364,14 @@
 (use-package jedi
   :ensure t)
 
-(use-package elpy
-  :ensure t
-  :config
-  (setq python-shell-interpreter "python3")
-  (setq elpy-rpc-python-command "python3")
-  (setq elpy-interactive-python-command "ipython3")
-  (elpy-use-ipython "ipython3")
-  (elpy-enable))
+;(use-package elpy
+;  :ensure t
+;  :config
+;  (setq python-shell-interpreter "python3")
+;  (setq elpy-rpc-python-command "python3")
+;  (setq elpy-interactive-python-command "ipython3")
+;  (elpy-use-ipython "ipython3")
+;  (elpy-enable))
 
 (use-package which-key
   :ensure t
