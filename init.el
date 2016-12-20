@@ -71,6 +71,10 @@
   ;; For gdb style based on gnu ident case in switch statements
   ;; may not be really needed
   ;;(c-set-offset 'case-label '+)
+
+  ;; long functions with (
+  ;;   arg);
+  (c-set-offset 'arglist-intro '+)
   )
 
 (use-package semantic
