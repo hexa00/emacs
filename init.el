@@ -91,6 +91,30 @@
   :config
   (semantic-mode 1)
   )
+; apt-get install clang cppcheck
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode)
+  :config
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck))
+  (let ((default-directory "~/src/binutils-gdb"))
+    (setq flycheck-gcc-include-path (list
+				     (expand-file-name ".")
+				     (expand-file-name "gdb")
+				     (expand-file-name "gdb/gdbserver")
+				     (expand-file-name "build-x86/gdb")
+				     (expand-file-name "build-x86/gdb/gdbserver/build-gnulib-gdbserver/import")
+				     (expand-file-name "gdb/common")
+				     (expand-file-name "gdb/config")
+				     (expand-file-name "bfd")
+				     (expand-file-name "include")
+				     (expand-file-name "libdecnumber")
+				     (expand-file-name "gdb/gnulib/import")
+				     (expand-file-name "-I/usr/include/guile/2.0")
+				     (expand-file-name "-I/usr/include/python/2.7")
+				     )))
+  (setq-default flycheck-gcc-language-standard "gnu++11")
+  )
 
 (use-package ecb
   :defer t
