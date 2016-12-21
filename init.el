@@ -96,6 +96,9 @@
   :ensure t
   :init (global-flycheck-mode)
   :config
+  ;; Disabling cppcheck as it can cause hudge memory usage if
+  ;; not called with -UIN_PROCESS_AGENT
+  ;; Prefer gcc to clang
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck))
   (let ((default-directory "~/src/binutils-gdb"))
     (setq flycheck-gcc-include-path (list
