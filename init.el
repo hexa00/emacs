@@ -105,6 +105,7 @@
 				     (expand-file-name ".")
 				     (expand-file-name "gdb")
 				     (expand-file-name "gdb/gdbserver")
+				     (expand-file-name "build-x86/bfd")
 				     (expand-file-name "build-x86/gdb")
 				     (expand-file-name "build-x86/gdb/gdbserver/build-gnulib-gdbserver/import")
 				     (expand-file-name "gdb/common")
