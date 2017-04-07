@@ -428,6 +428,9 @@ contextual information."
 
 (use-package interleave)
 
+(use-package jsx-mode
+  :ensure t)
+
 (use-package work
   :ensure f)
 
