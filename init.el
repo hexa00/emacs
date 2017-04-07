@@ -74,7 +74,7 @@
 
   ;; long functions with (
   ;;   arg);
-  (c-set-offset 'arglist-intro '+)
+;  (c-set-offset 'arglist-intro '+)
   )
 
 (use-package semantic
