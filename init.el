@@ -438,8 +438,10 @@ contextual information."
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)
+;;    (setq tide-tsserver-process-environment '("TSS_LOG=-level verbose"))
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
+    (flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)
     (eldoc-mode +1)
     (tide-hl-identifier-mode +1)
     ;; company is an optional dependency. You have to
@@ -457,6 +459,19 @@ contextual information."
   (add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
   (add-hook 'js2-mode-hook #'setup-tide-mode)1
+  )
+
+;; npm install -g tsun
+(use-package ts-comint
+  :ensure t
+  :config
+  (add-hook 'typescript-mode-hook
+	    (lambda ()
+	      (local-set-key (kbd "C-x C-e") 'ts-send-last-sexp)
+	      (local-set-key (kbd "C-M-x") 'ts-send-last-sexp-and-go)
+	      (local-set-key (kbd "C-c b") 'ts-send-buffer)
+	      (local-set-key (kbd "C-c C-b") 'ts-send-buffer-and-go)
+	      (local-set-key (kbd "C-c l") 'ts-load-file-and-go)))
   )
 
 (use-package work
