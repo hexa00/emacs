@@ -46,6 +46,9 @@
 ;;; y-n to yes /no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+(setq require-final-newline nil)
+(setq mode-require-final-newline nil)
+
 ;; set default font
 ;; this doesn't work in emacs 25 use custom-set-faces default..
 ;; set it with menu-bar-open -> set default font
