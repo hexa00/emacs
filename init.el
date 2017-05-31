@@ -432,13 +432,14 @@ contextual information."
   :ensure t)
 
 ;; https://github.com/ananthakumaran/tide
+;; npm install -g typescript tslint
 (use-package tide
   :ensure t
   :config
   (defun setup-tide-mode ()
     (interactive)
     (tide-setup)
-;;    (setq tide-tsserver-process-environment '("TSS_LOG=-level verbose"))
+;;    (setq tide-tsserver-process-environment '("TSS_LOG=-level verbose -file /tmp/tss.log"))
     (flycheck-mode +1)
     (setq flycheck-check-syntax-automatically '(save mode-enabled))
     (flycheck-add-next-checker 'typescript-tide '(t . typescript-tslint) 'append)
@@ -450,6 +451,9 @@ contextual information."
     (company-mode +1)
     ;; indent on tab with tide-format
     (local-set-key (kbd "TAB") 'tide-format)
+    (local-set-key (kbd "M-'") 'tide-jump-to-definition)
+    (local-set-key (kbd "M-]") 'tide-jump-to-implementation)
+    (local-set-key (kbd "M-;") 'tide-jump-back)
   )
 
   ;; aligns annotation to the right hand side
@@ -458,7 +462,8 @@ contextual information."
   ;; formats the buffer before saving
   (add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'typescript-mode-hook #'setup-tide-mode)
-  (add-hook 'js2-mode-hook #'setup-tide-mode)1
+  (add-hook 'js2-mode-hook #'setup-tide-mode)
+  (add-hook 'typescript-mode-hook 'helm-gtags-mode)
   )
 
 ;; npm install -g tsun
