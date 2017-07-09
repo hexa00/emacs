@@ -13,6 +13,10 @@
 (ansi-color-for-comint-mode-on)
 (setq visible-bell t)
 
+;; disable backup and autosave to use gpg etc..
+(setq auto-save-default nil)
+(setq make-backup-files nil)
+
 ;; Set directory for ~ backup files
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
