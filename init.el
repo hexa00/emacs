@@ -489,6 +489,9 @@ contextual information."
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "marked"))
 
+(require 'epa-file)
+(epa-file-enable)
+
 (use-package work
   :ensure f)
 
